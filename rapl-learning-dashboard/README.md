@@ -3,6 +3,7 @@
 A modern, responsive online learning management dashboard built with **Angular 21**, **TypeScript**, and **Vitest**. The project demonstrates enterprise-grade Angular architecture using standalone components, reactive forms, state-preserving services, and rich UI/UX without external UI library overhead.
 
 ---
+LIVE URL:https://ralp11-y2vj-p1brqcqxa-gatepass-projects-bf8d87a8.vercel.app
 
 ## Table of Contents
 - [Architecture & Tech Stack](#architecture--tech-stack)
