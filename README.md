@@ -1,4 +1,4 @@
-<![CDATA[# 📚 RAPL Learning Dashboard
+# 📚 RAPL Learning Dashboard
 
 A modern, feature-rich **learning management dashboard** built with **Angular 21** and **TypeScript**. Track your courses, monitor progress, and prepare for technical interviews — all from a single, elegant interface
 
