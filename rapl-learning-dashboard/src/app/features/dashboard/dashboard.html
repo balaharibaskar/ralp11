@@ -1,0 +1,124 @@
+<div class="dashboard">
+
+  <!-- Header -->
+  <section class="dashboard-header">
+    <div>
+      <p class="eyebrow">RAPL LEARNING PLATFORM</p>
+      <h1>Learning Dashboard</h1>
+      <p class="header-description">
+        Track your learning progress and continue where you left off.
+      </p>
+    </div>
+
+    <a class="browse-button" routerLink="/courses">
+      Browse Courses
+    </a>
+  </section>
+
+
+  <!-- Statistics -->
+  <section class="stats-grid">
+
+    <div class="stat-card">
+      <div class="stat-icon courses-icon">C</div>
+
+      <div>
+        <p class="stat-label">Total Courses</p>
+        <h2>{{ totalCourses }}</h2>
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div class="stat-icon completed-icon">✓</div>
+
+      <div>
+        <p class="stat-label">Completed</p>
+        <h2>{{ completedCourses }}</h2>
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div class="stat-icon progress-icon">↗</div>
+
+      <div>
+        <p class="stat-label">In Progress</p>
+        <h2>{{ inProgressCourses }}</h2>
+      </div>
+    </div>
+
+
+    <div class="stat-card">
+      <div class="stat-icon pending-icon">○</div>
+
+      <div>
+        <p class="stat-label">Not Started</p>
+        <h2>{{ notStartedCourses }}</h2>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- Continue Learning -->
+  <section class="learning-section">
+
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">KEEP LEARNING</p>
+        <h2>Continue Learning</h2>
+      </div>
+
+      <a routerLink="/courses">View all courses →</a>
+    </div>
+
+
+    <div class="course-preview">
+
+      <div class="course-thumbnail">
+        <span>{{ continueCourse?.category?.toUpperCase() || 'RAPL' }}</span>
+      </div>
+
+      <div class="course-info">
+
+        <span class="status-badge">
+          {{ continueCourse?.status || 'In Progress' }}
+        </span>
+
+        <h3>{{ continueCourse?.name || 'Angular Fundamentals' }}</h3>
+
+        <p>
+          {{ continueCourse?.description || 'Learn Angular components, routing, services, forms and TypeScript fundamentals.' }}
+        </p>
+
+        <div class="course-meta">
+          <span>{{ continueCourse?.duration || 6 }} hours</span>
+          <span>•</span>
+          <span>{{ continueCourse?.lessons || 12 }} lessons</span>
+        </div>
+
+        <div class="progress-area">
+
+          <div class="progress-header">
+            <span>Course progress</span>
+            <span>65%</span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+        </div>
+
+        <a class="continue-button" [routerLink]="['/courses', continueCourse?.id || 1]">
+          Continue Learning
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

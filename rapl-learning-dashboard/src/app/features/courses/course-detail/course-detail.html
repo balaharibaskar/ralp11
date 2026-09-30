@@ -1,0 +1,149 @@
+<div class="course-detail-page">
+
+  <!-- Breadcrumb / Back Link -->
+  <div class="top-nav">
+    <a routerLink="/courses" class="back-link">
+      ← Back to Courses
+    </a>
+  </div>
+
+  @if (statusUpdatedMessage) {
+    <div class="alert-success">
+      ✓ {{ statusUpdatedMessage }}
+    </div>
+  }
+
+  @if (course) {
+    <div class="detail-container">
+
+      <!-- Main Course Details Card -->
+      <section class="main-card">
+        <div class="header-section">
+          <div class="tags-row">
+            <span class="category-tag">{{ course.category || 'General' }}</span>
+            <span class="status-badge" [ngClass]="getStatusClass(course.status)">
+              {{ course.status }}
+            </span>
+          </div>
+
+          <h1 class="course-title">{{ course.name }}</h1>
+          <p class="course-description">{{ course.description }}</p>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Duration</span>
+            <strong class="metric-value">⏱ {{ course.duration }} Hours</strong>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Curriculum</span>
+            <strong class="metric-value">📚 {{ course.lessons }} Lessons</strong>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Status</span>
+            <strong class="metric-value">{{ course.status }}</strong>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Completion</span>
+            <strong class="metric-value">{{ getProgressPercentage() }}%</strong>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-section">
+          <div class="progress-info">
+            <span>Overall Progress</span>
+            <span>{{ getProgressPercentage() }}%</span>
+          </div>
+          <div class="progress-track">
+            <div
+              class="progress-fill"
+              [style.width.%]="getProgressPercentage()"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Status Management Actions -->
+        <div class="actions-section">
+          <p class="actions-title">Update Course Status:</p>
+          <div class="buttons-row">
+            <button
+              class="action-btn btn-progress"
+              (click)="updateStatus('In Progress')"
+              [disabled]="course.status === 'In Progress'"
+            >
+              ▶ Start / Continue
+            </button>
+
+            <button
+              class="action-btn btn-complete"
+              (click)="updateStatus('Completed')"
+              [disabled]="course.status === 'Completed'"
+            >
+              ✓ Mark as Completed
+            </button>
+
+            <button
+              class="action-btn btn-reset"
+              (click)="updateStatus('Not Started')"
+              [disabled]="course.status === 'Not Started'"
+            >
+              ↺ Reset Status
+            </button>
+          </div>
+        </div>
+
+        <!-- Course Syllabus / Outline Preview -->
+        <div class="syllabus-section">
+          <h3>Curriculum Overview</h3>
+          <ul class="lesson-list">
+            <li class="lesson-item">
+              <span class="lesson-number">01</span>
+              <div>
+                <strong>Introduction & Environment Setup</strong>
+                <p>Overview of core principles, tooling, and prerequisites.</p>
+              </div>
+              <span class="lesson-time">35 mins</span>
+            </li>
+            <li class="lesson-item">
+              <span class="lesson-number">02</span>
+              <div>
+                <strong>Core Concepts & Architecture</strong>
+                <p>Component hierarchy, unidirectional data flow, and state.</p>
+              </div>
+              <span class="lesson-time">55 mins</span>
+            </li>
+            <li class="lesson-item">
+              <span class="lesson-number">03</span>
+              <div>
+                <strong>Hands-on Implementation & Best Practices</strong>
+                <p>Writing clean, maintainable, modular TypeScript code.</p>
+              </div>
+              <span class="lesson-time">75 mins</span>
+            </li>
+            <li class="lesson-item">
+              <span class="lesson-number">04</span>
+              <div>
+                <strong>Testing & Production Readiness</strong>
+                <p>Unit testing with Vitest, responsive styling, and optimizations.</p>
+              </div>
+              <span class="lesson-time">45 mins</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  } @else if (notFound) {
+    <div class="not-found-card">
+      <div class="not-found-icon">⚠️</div>
+      <h2>Course Not Found</h2>
+      <p>The course you are looking for does not exist or may have been removed.</p>
+      <a routerLink="/courses" class="primary-button">
+        Browse All Courses
+      </a>
+    </div>
+  }
+
+</div>

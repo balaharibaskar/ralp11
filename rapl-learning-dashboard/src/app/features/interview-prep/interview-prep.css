@@ -1,0 +1,300 @@
+.interview-prep-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #6a6f73;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.2;
+  color: #1c1d1f;
+}
+
+.header-description {
+  margin: 10px 0 0;
+  color: #6a6f73;
+  font-size: 15px;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+/* Topic Filters */
+.topic-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filter-pill {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #f0f0f2;
+  border: 1px solid #d1d7dc;
+  color: #1c1d1f;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-pill:hover {
+  background: #e4e8eb;
+}
+
+.filter-pill.active {
+  background: #1c1d1f;
+  color: #ffffff;
+  border-color: #1c1d1f;
+}
+
+/* FAQ Accordion */
+.faq-section {
+  margin-bottom: 48px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item.is-open {
+  border-color: #5624d0;
+  box-shadow: 0 4px 12px rgba(86, 36, 208, 0.06);
+}
+
+.faq-header {
+  width: 100%;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+
+.faq-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.faq-category {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #5624d0;
+  letter-spacing: 0.5px;
+}
+
+.faq-question {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1c1d1f;
+  line-height: 1.35;
+}
+
+.toggle-icon {
+  font-size: 22px;
+  font-weight: 600;
+  color: #6a6f73;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f7f7f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.faq-body {
+  padding: 0 24px 24px;
+  border-top: 1px solid #f0f0f2;
+  margin-top: 4px;
+  padding-top: 18px;
+}
+
+.faq-answer {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2d2f31;
+}
+
+.key-points-box {
+  background: #fbfbfb;
+  border-left: 3px solid #5624d0;
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+}
+
+.key-points-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #5624d0;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.key-points-box ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.key-points-box li {
+  font-size: 13px;
+  color: #4b4f54;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.key-points-box li:last-child {
+  margin-bottom: 0;
+}
+
+/* Interview Courses Section */
+.interview-courses-section {
+  border-top: 1px solid #e4e4e4;
+  padding-top: 36px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1c1d1f;
+}
+
+.browse-link {
+  color: #5624d0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.browse-link:hover {
+  text-decoration: underline;
+}
+
+.courses-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.course-mini-card {
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.meta-tag {
+  font-size: 12px;
+  color: #6a6f73;
+}
+
+.course-mini-card h4 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: #1c1d1f;
+}
+
+.course-mini-card p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6a6f73;
+}
+
+.cta-link {
+  color: #5624d0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  align-self: flex-start;
+}
+
+.cta-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .interview-prep-page {
+    padding: 24px 16px 40px;
+  }
+
+  .page-header h1 {
+    font-size: 26px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .faq-header {
+    padding: 16px;
+  }
+
+  .faq-body {
+    padding: 0 16px 16px;
+  }
+}

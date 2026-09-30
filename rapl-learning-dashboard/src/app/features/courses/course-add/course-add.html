@@ -1,0 +1,166 @@
+<div class="course-add-page">
+
+  <!-- Top Breadcrumb -->
+  <div class="top-nav">
+    <a routerLink="/courses" class="back-link">
+      ← Back to Courses
+    </a>
+  </div>
+
+  @if (successMessage) {
+    <div class="alert-success">
+      ✓ {{ successMessage }}
+    </div>
+  }
+
+  <div class="form-container">
+    <div class="form-header">
+      <p class="eyebrow">RAPL COURSE MANAGEMENT</p>
+      <h1>Add New Course</h1>
+      <p class="header-description">
+        Fill out the course details below to add it to your learning catalog.
+      </p>
+    </div>
+
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Course Name -->
+      <div class="form-group" [class.has-error]="isFieldInvalid('name')">
+        <label for="name">
+          Course Title <span class="required-star">*</span>
+        </label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="e.g. Masterclass in Angular Signals & State"
+        />
+        @if (isFieldInvalid('name')) {
+          <div class="error-feedback">
+            @if (f['name'].errors?.['required']) {
+              <span>Course title is required.</span>
+            }
+            @if (f['name'].errors?.['minlength']) {
+              <span>Title must be at least 3 characters.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Topic / Category -->
+      <div class="form-group" [class.has-error]="isFieldInvalid('category')">
+        <label for="category">
+          Topic / Category <span class="required-star">*</span>
+        </label>
+        <select id="category" formControlName="category">
+          @for (cat of categoryOptions; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group" [class.has-error]="isFieldInvalid('description')">
+        <label for="description">
+          Description <span class="required-star">*</span>
+        </label>
+        <textarea
+          id="description"
+          rows="4"
+          formControlName="description"
+          placeholder="Provide a comprehensive summary of what learners will master in this course..."
+        ></textarea>
+        @if (isFieldInvalid('description')) {
+          <div class="error-feedback">
+            @if (f['description'].errors?.['required']) {
+              <span>Course description is required.</span>
+            }
+            @if (f['description'].errors?.['minlength']) {
+              <span>Description must be at least 10 characters long.</span>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Two-column row: Duration & Lessons -->
+      <div class="form-row">
+        <div class="form-group" [class.has-error]="isFieldInvalid('duration')">
+          <label for="duration">
+            Duration (Hours) <span class="required-star">*</span>
+          </label>
+          <input
+            id="duration"
+            type="number"
+            min="1"
+            max="200"
+            formControlName="duration"
+            placeholder="e.g. 6"
+          />
+          @if (isFieldInvalid('duration')) {
+            <div class="error-feedback">
+              @if (f['duration'].errors?.['required']) {
+                <span>Duration is required.</span>
+              }
+              @if (f['duration'].errors?.['min']) {
+                <span>Must be at least 1 hour.</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group" [class.has-error]="isFieldInvalid('lessons')">
+          <label for="lessons">
+            Number of Lessons <span class="required-star">*</span>
+          </label>
+          <input
+            id="lessons"
+            type="number"
+            min="1"
+            max="200"
+            formControlName="lessons"
+            placeholder="e.g. 12"
+          />
+          @if (isFieldInvalid('lessons')) {
+            <div class="error-feedback">
+              @if (f['lessons'].errors?.['required']) {
+                <span>Lessons count is required.</span>
+              }
+              @if (f['lessons'].errors?.['min']) {
+                <span>Must have at least 1 lesson.</span>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Initial Status -->
+      <div class="form-group" [class.has-error]="isFieldInvalid('status')">
+        <label for="status">
+          Initial Learning Status <span class="required-star">*</span>
+        </label>
+        <select id="status" formControlName="status">
+          @for (status of statusOptions; track status) {
+            <option [value]="status">{{ status }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">
+          Create Course
+        </button>
+
+        <button type="button" class="reset-btn" (click)="onReset()">
+          Reset Form
+        </button>
+
+        <a routerLink="/courses" class="cancel-link">
+          Cancel
+        </a>
+      </div>
+
+    </form>
+  </div>
+
+</div>

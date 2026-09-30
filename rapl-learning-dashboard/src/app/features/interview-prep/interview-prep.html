@@ -1,0 +1,118 @@
+<div class="interview-prep-page">
+
+  <!-- Header -->
+  <section class="page-header">
+    <div>
+      <p class="eyebrow">RAPL CAREER PREP</p>
+      <h1>Interview Preparation Guide</h1>
+      <p class="header-description">
+        Essential Angular & Frontend architecture questions, in-depth explanations, and curated courses to help you succeed in technical interviews.
+      </p>
+    </div>
+  </section>
+
+  <!-- Topic Filters -->
+  <div class="topic-filters">
+    <button
+      class="filter-pill"
+      [class.active]="selectedCategory === 'All'"
+      (click)="selectedCategory = 'All'"
+    >
+      All Topics ({{ questions.length }})
+    </button>
+    <button
+      class="filter-pill"
+      [class.active]="selectedCategory === 'Core'"
+      (click)="selectedCategory = 'Core'"
+    >
+      Core & DI
+    </button>
+    <button
+      class="filter-pill"
+      [class.active]="selectedCategory === 'Signals'"
+      (click)="selectedCategory = 'Signals'"
+    >
+      Signals & Reactivity
+    </button>
+    <button
+      class="filter-pill"
+      [class.active]="selectedCategory === 'Forms'"
+      (click)="selectedCategory = 'Forms'"
+    >
+      Forms & State
+    </button>
+    <button
+      class="filter-pill"
+      [class.active]="selectedCategory === 'Performance'"
+      (click)="selectedCategory = 'Performance'"
+    >
+      Performance & Defer
+    </button>
+  </div>
+
+  <!-- Q&A List -->
+  <section class="faq-section">
+    <div class="faq-list">
+      @for (item of filteredQuestions; track item.id) {
+        <article class="faq-item" [class.is-open]="item.expanded">
+          <button
+            class="faq-header"
+            (click)="toggleQuestion(item)"
+            [attr.aria-expanded]="item.expanded"
+          >
+            <div class="faq-header-content">
+              <span class="faq-category">{{ item.category }}</span>
+              <h3 class="faq-question">{{ item.question }}</h3>
+            </div>
+            <span class="toggle-icon">{{ item.expanded ? '−' : '+' }}</span>
+          </button>
+
+          @if (item.expanded) {
+            <div class="faq-body">
+              <p class="faq-answer">{{ item.answer }}</p>
+
+              <div class="key-points-box">
+                <span class="key-points-title">Key Talking Points:</span>
+                <ul>
+                  @for (point of item.keyPoints; track point) {
+                    <li>{{ point }}</li>
+                  }
+                </ul>
+              </div>
+            </div>
+          }
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- Featured Mock Courses for Interview Prep -->
+  <section class="interview-courses-section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">CURATED TRACKS</p>
+        <h2>Interview Preparation Mock Courses</h2>
+      </div>
+      <a routerLink="/courses" class="browse-link">View all courses →</a>
+    </div>
+
+    <div class="courses-row">
+      @for (course of interviewCourses; track course.id) {
+        <div class="course-mini-card">
+          <div class="card-head">
+            <span class="badge">{{ course.status }}</span>
+            <span class="meta-tag">{{ course.duration }} hrs • {{ course.lessons }} lessons</span>
+          </div>
+
+          <h4>{{ course.name }}</h4>
+          <p>{{ course.description }}</p>
+
+          <a [routerLink]="['/courses', course.id]" class="cta-link">
+            Open Course Track →
+          </a>
+        </div>
+      }
+    </div>
+  </section>
+
+</div>

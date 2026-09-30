@@ -1,0 +1,124 @@
+<div class="course-list-page">
+
+  <!-- Header -->
+  <section class="page-header">
+    <div>
+      <p class="eyebrow">RAPL COURSE CATALOG</p>
+      <h1>Explore Courses</h1>
+      <p class="header-description">
+        Browse our industry-curated curriculum, filter by status, or search for topics.
+      </p>
+    </div>
+
+    <a class="primary-button" routerLink="/courses/add">
+      + Add New Course
+    </a>
+  </section>
+
+  <!-- Filters & Controls Bar -->
+  <section class="controls-card">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        placeholder="Search courses by title or keyword..."
+        [(ngModel)]="searchTerm"
+        aria-label="Search courses"
+      />
+      @if (searchTerm) {
+        <button class="clear-input-btn" (click)="searchTerm = ''" title="Clear search">×</button>
+      }
+    </div>
+
+    <div class="filters-row">
+      <div class="filter-group">
+        <label for="status-filter">Status:</label>
+        <select id="status-filter" [(ngModel)]="selectedStatus">
+          <option value="All">All Statuses</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Not Started">Not Started</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="category-filter">Topic:</label>
+        <select id="category-filter" [(ngModel)]="selectedCategory">
+          <option value="All">All Topics</option>
+          @for (category of categories; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="sort-filter">Sort by:</label>
+        <select id="sort-filter" [(ngModel)]="sortBy">
+          <option value="name-asc">Name (A – Z)</option>
+          <option value="name-desc">Name (Z – A)</option>
+          <option value="duration-asc">Duration (Shortest first)</option>
+          <option value="duration-desc">Duration (Longest first)</option>
+          <option value="lessons-desc">Lessons (Most first)</option>
+        </select>
+      </div>
+
+      <button
+        class="secondary-button"
+        (click)="resetFilters()"
+        title="Reset all filters"
+      >
+        Reset
+      </button>
+    </div>
+  </section>
+
+  <!-- Results Count -->
+  <div class="results-header">
+    <p class="results-count">
+      Showing <strong>{{ filteredCourses.length }}</strong> of {{ courses.length }} courses
+    </p>
+  </div>
+
+  <!-- Course Grid -->
+  @if (filteredCourses.length > 0) {
+    <div class="courses-grid">
+      @for (course of filteredCourses; track course.id) {
+        <article class="course-card">
+          <div class="card-top">
+            <span class="category-tag">{{ course.category || 'General' }}</span>
+            <span class="status-badge" [ngClass]="getStatusClass(course.status)">
+              {{ course.status }}
+            </span>
+          </div>
+
+          <div class="card-content">
+            <h2 class="course-title">{{ course.name }}</h2>
+            <p class="course-description">{{ course.description }}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="course-meta">
+              <span>⏱ {{ course.duration }} hours</span>
+              <span>•</span>
+              <span>📚 {{ course.lessons }} lessons</span>
+            </div>
+
+            <a class="details-button" [routerLink]="['/courses', course.id]">
+              View Details →
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">
+      <div class="empty-icon">📂</div>
+      <h3>No courses matched your criteria</h3>
+      <p>Try searching for a different keyword or adjusting your filters.</p>
+      <button class="primary-button" (click)="resetFilters()">
+        Clear All Filters
+      </button>
+    </div>
+  }
+
+</div>
